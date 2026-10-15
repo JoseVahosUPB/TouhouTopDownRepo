@@ -23,7 +23,8 @@ public class Player : Entity
 
     public override void Die()
     {
-        // TODO: Implement game over logic
+        // Simple game-over handling: log and then perform default destruction
+        Debug.Log("Game Over");
         base.Die();
     }
 }

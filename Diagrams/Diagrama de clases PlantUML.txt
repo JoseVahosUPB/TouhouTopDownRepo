@@ -2,48 +2,56 @@
 skinparam classAttributeIconSize 0
 !theme plain
 interface IDamageable {
-    +TakeDamage(amount: int)
+    +TakeDamage(amount: int): void
 }
 
 abstract class Entity {
     #health: int
     #speed: float
-    +TakeDamage(amount: int)
-    #Move()
-    #Die()
+    +TakeDamage(amount: int): void
+    +Move(): void
+    +Die(): void
 }
 
 class Player {
+    -rb: Rigidbody2D
     -currentWeapon: Weapon
-    #Move()
-    #Die()
+    +Move(): void
+    +Die(): void
 }
 
 abstract class Enemy {
 }
 
 class Chaser {
-    #Move()
+    +Move(): void
 }
 
 class Zigzag {
-    #Move()
+    -amplitude: float
+    -frequency: float
+    -initialY: float
+    -phase: float
+    +Move(): void
 }
 
 abstract class Weapon {
     #damage: int
     #fireRate: float
     #bulletPrefab: Bullet
-    +Fire(direction: Vector2)
+    +Fire(): void
 }
 
 class Normal {
-    +Fire(direction: Vector2)
+    +Fire(): void
 }
 
 class Bullet {
     -speed: float
     -damage: int
+    -direction: Vector2
+    +Initialize(dir: Vector2, damageAmount: int): void
+    -OnTriggerEnter2D(other: Collider2D): void
 }
 
 ' Relaciones de Herencia e Interfaz
