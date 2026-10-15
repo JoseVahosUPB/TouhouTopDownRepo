@@ -1,0 +1,63 @@
+@startuml
+skinparam classAttributeIconSize 0
+!theme plain
+interface IDamageable {
+    +TakeDamage(amount: int)
+}
+
+abstract class Entity {
+    #health: int
+    #speed: float
+    +TakeDamage(amount: int)
+    #Move()
+    #Die()
+}
+
+class Player {
+    -currentWeapon: Weapon
+    #Move()
+    #Die()
+}
+
+abstract class Enemy {
+}
+
+class Chaser {
+    #Move()
+}
+
+class Zigzag {
+    #Move()
+}
+
+abstract class Weapon {
+    #damage: int
+    #fireRate: float
+    #bulletPrefab: Bullet
+    +Fire(direction: Vector2)
+}
+
+class Normal {
+    +Fire(direction: Vector2)
+}
+
+class Bullet {
+    -speed: float
+    -damage: int
+}
+
+' Relaciones de Herencia e Interfaz
+Entity ..|> IDamageable
+Player --|> Entity
+Enemy --|> Entity
+
+Chaser --|> Enemy
+Zigzag --|> Enemy
+
+Normal --|> Weapon
+
+' Asociaciones y Dependencias
+Player "1" --> "1" Weapon
+Weapon ..> Bullet : crea
+Bullet ..> IDamageable : daña
+@enduml
