@@ -21,6 +21,8 @@ class Player {
 }
 
 abstract class Enemy {
+    -damage: int
+    -OnTriggerEnter2D(other: Collider2D): void
 }
 
 class Chaser {

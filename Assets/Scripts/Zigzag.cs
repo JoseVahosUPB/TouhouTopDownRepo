@@ -16,7 +16,7 @@ public class Zigzag : Enemy
     public override void Move()
     {
         // Move horizontally (to the left) while oscillating on the Y axis using a sine wave
-        float newX = transform.position.x - (speed * Time.deltaTime);
+        float newX = transform.position.x - (speed * Time.deltaTime * transform.localScale.x);
         float newY = initialY + Mathf.Sin(Time.time * frequency + phase) * amplitude;
         transform.position = new Vector2(newX, newY);
     }

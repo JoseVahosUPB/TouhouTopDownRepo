@@ -4,7 +4,7 @@ public class Chaser : Enemy {
     public override void Move()
     {
         // Find the player and move towards them
-        Player player = FindObjectOfType<Player>();
+        Player player = FindAnyObjectByType<Player>();
         if (player == null) return;
 
         Vector2 direction = (player.transform.position - transform.position).normalized;
